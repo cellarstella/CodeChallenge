@@ -1,0 +1,23 @@
+.contact {
+    font-family: OpenSans, sans-serif;
+    font-size: 12px;
+    padding: 0;
+    width: 350px;
+}
+li {
+    list-style: none;
+    color: #0F2026;
+}
+.name {
+    background-color: #025059;
+    padding: 2px 5px;
+    color: #BFB8B0;
+    display:block;
+    font-size:13px;
+    font-weight:600;
+}
+.id {
+    color: #038C8C;
+    float: right;
+}
+.email{ color: #037E8C;}
