@@ -18,6 +18,8 @@ request.onreadystatechange = function() {
 // Add only if _id or email exist yet.
 // If either of these loops returns a number greater than -1, the record will not be added.
 // Since the array is already sorted by date, the first object encountered with a later duplicate id will be the most recent.
+		var numDateSortedLeads = dateSortedLeads.length;
+		console.log('Processing file containing ' + numDateSortedLeads + ' potential leads');
     var uniqueLeads = dateSortedLeads.slice()
 		  .reduce(function (a,b) {
 			  	function indexOfProperty (a, b){
@@ -28,15 +30,17 @@ request.onreadystatechange = function() {
 			  	}
 			  	return -1; //if nothing has been returned, it's not a match
 			  }
-			  console.log(a, b, indexOfProperty(a,b));
+			  if (indexOfProperty(a,b) > -1){
+			  	console.log('Duplicate record ' + b._id + ' discarded.');
+			  }
 		  	if (indexOfProperty(a,b) <= 0) a.push(b);
 		  	return a;
 			}, []);
+		console.log('Finished processing file, ' + (numDateSortedLeads - uniqueLeads.length) + ' of ' + numDateSortedLeads + ' records were duplicates.');
+
 		function dateFormat(value) {
 	    var a;
 	    if (typeof value === 'string') {
-	    	// 2008-01-01T12:00:00Z
-	    	// 2014-05-07T17:30:20+00:00
 	    		var re = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\+(\d{2}):(\d{2})?$/;
 	        a = re.exec(value);
 	        if (a) {
