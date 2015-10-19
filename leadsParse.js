@@ -38,6 +38,7 @@ request.onreadystatechange = function() {
 			}, []);
 		console.log('Finished processing file, ' + (numDateSortedLeads - uniqueLeads.length) + ' of ' + numDateSortedLeads + ' records were duplicates.');
 
+		// This is simply to print a more readable date to the view
 		function dateFormat(value) {
 	    var a;
 	    if (typeof value === 'string') {
@@ -49,6 +50,7 @@ request.onreadystatechange = function() {
 	        }
         return value;
     };
+
 	  for (i = 0; i < uniqueLeads.length; i++) {
       document.getElementById('leads').innerHTML +=
       '<ul class="contact"><li class="name">' + uniqueLeads[i].firstName + ' ' + uniqueLeads[i].lastName + 
